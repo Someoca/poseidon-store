@@ -36,7 +36,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     const response = await fetch("catalog/catalog.json");
     if (!response.ok) throw new Error("Manifesto indisponível");
     const data = await response.json();
-    catalog = Array.isArray(data.items) ? data.items.filter(isValidItem) : [];
+    catalog = Array.isArray(data.items) ? data.items.filter(isValidItem).map(normalizeItem) : [];
   } catch {
     catalog = [];
     showToast("O catálogo não carregou. Abra o projeto pelo servidor local.");
@@ -44,8 +44,31 @@ document.addEventListener("DOMContentLoaded", async () => {
 
   function isValidItem(item) {
     return item && typeof item.id === "string" && typeof item.name === "string" &&
-      typeof item.description === "string" && Array.isArray(item.platforms) &&
-      typeof item.category === "string";
+      Array.isArray(item.platforms) && item.platforms.length > 0 &&
+      item.platforms.every((platform) => platforms.some((entry) => entry.id === platform));
+  }
+
+  function normalizeItem(item) {
+    const colors = Array.isArray(item.colors) && item.colors.length >= 2 &&
+      item.colors.slice(0, 2).every((color) => typeof color === "string" && /^#[\da-f]{6}$/i.test(color))
+      ? item.colors.slice(0, 2)
+      : ["#188cb4", "#142856"];
+    return {
+      ...item,
+      category: typeof item.category === "string" && item.category.trim() ? item.category : (item.platforms.includes("homebrew") ? "Aplicativos" : "Jogos"),
+      description: typeof item.description === "string" ? item.description : "",
+      colors,
+    };
+  }
+
+  function safeAssetUrl(value) {
+    if (typeof value !== "string" || !value.trim()) return "";
+    try {
+      const asset = new URL(value, window.location.href);
+      if (asset.protocol === "https:" && !asset.username && !asset.password) return asset.href;
+      if (asset.origin === window.location.origin && value.startsWith("assets/") && !value.split("/").includes("..")) return value;
+    } catch { /* Invalid asset path: keep the generated Poseidon artwork. */ }
+    return "";
   }
 
   function makePlatformCard(platform, index) {
@@ -173,7 +196,19 @@ document.addEventListener("DOMContentLoaded", async () => {
     art.setAttribute("aria-hidden", "true");
     const figure = document.createElement("span");
     figure.className = "cover-figure";
-    art.append(figure);
+    const coverUrl = safeAssetUrl(item.cover);
+    if (coverUrl) {
+      art.classList.add("has-cover");
+      const image = document.createElement("img");
+      image.className = "cover-image";
+      image.src = coverUrl;
+      image.alt = "";
+      image.loading = "lazy";
+      image.addEventListener("error", () => { image.remove(); art.classList.remove("has-cover"); }, { once: true });
+      art.append(image);
+    } else {
+      art.append(figure);
+    }
     const coverTitle = document.createElement("span");
     coverTitle.className = "cover-title";
     coverTitle.textContent = item.name;
@@ -198,7 +233,11 @@ document.addEventListener("DOMContentLoaded", async () => {
     counter.textContent = `${String(activeIndex + 1).padStart(2, "0")} / ${String(visibleItems.length).padStart(2, "0")}`;
     store.style.setProperty("--active-a", item.colors[0]);
     store.style.setProperty("--active-b", item.colors[1]);
-    document.querySelector(".backdrop").style.background = `radial-gradient(ellipse at 50% 39%,${item.colors[0]}99 0,transparent 47%),radial-gradient(ellipse at 80% 78%,${item.colors[1]}88 0,transparent 38%),linear-gradient(125deg,#06142b,#0a3677 50%,#020b1c)`;
+    const backdrop = document.querySelector(".backdrop");
+    const backgroundUrl = safeAssetUrl(item.background);
+    backdrop.style.background = backgroundUrl
+      ? `linear-gradient(90deg,rgba(2,11,28,.45),rgba(2,11,28,.08)),url(${JSON.stringify(backgroundUrl)}) center/cover`
+      : `radial-gradient(ellipse at 50% 39%,${item.colors[0]}99 0,transparent 47%),radial-gradient(ellipse at 80% 78%,${item.colors[1]}88 0,transparent 38%),linear-gradient(125deg,#06142b,#0a3677 50%,#020b1c)`;
   }
 
   function showDetails() {
@@ -211,6 +250,16 @@ document.addEventListener("DOMContentLoaded", async () => {
     const art = document.querySelector("#dialog-art");
     art.style.setProperty("--dialog-a", item.colors[0]);
     art.style.setProperty("--dialog-b", item.colors[1]);
+    art.replaceChildren();
+    const coverUrl = safeAssetUrl(item.cover);
+    if (coverUrl) {
+      const image = document.createElement("img");
+      image.className = "dialog-cover-image";
+      image.src = coverUrl;
+      image.alt = `Capa de ${item.name}`;
+      image.addEventListener("error", () => image.remove(), { once: true });
+      art.append(image);
+    }
     detailsDialog.showModal();
     document.querySelector(".dialog-close").focus();
   }

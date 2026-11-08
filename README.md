@@ -10,12 +10,17 @@ A Poseidon Store será desenvolvida como um projeto independente, usando a Infin
 
 - Tela de escolha entre Homebrew, PS3, PS One, PS2 e PS4, conforme as plataformas visíveis na Sandro Store de referência.
 - Carrossel de capas com item selecionado em destaque, arte de fundo temática e contador.
+- Importação de capas verticais (`cover`) e artes horizontais (`background`) no manifesto, preservando o formato de caixa usado no carrossel.
 - Detalhes do item, busca, filtro por categoria e teclas indicativas na tela.
 - Navegação com teclado e controle compatível com Gamepad API: direcional/analógico, X, círculo, quadrado, triângulo, L1 e R1.
 - Arte do guardião Poseidon em `assets/poseidon-guardian.svg`.
 - Os itens atuais em `catalog/catalog.json` são fictícios e servem somente como prévia de interface; não há arquivos nem links de download associados.
 - A interface conserva a estrutura de biblioteca por plataforma, carrossel, detalhes e navegação por controle. A marca e a arte do personagem foram substituídas pela identidade original Poseidon.
 - O arquivo Sandro Store enviado é um pacote instalável de PS4, não o projeto-fonte. Ele não disponibiliza um manifesto legível com a lista completa de itens e capas para migração direta.
+
+### Formato para catálogo importado
+
+Cada item pode informar `id`, `name`, `category`, `platforms`, `cover` e `background`. Coloque as capas autorizadas em `assets/covers/` e indique um caminho relativo, por exemplo `"cover": "assets/covers/meu-jogo.jpg"`. O carrossel usa proporção vertical de caixa de jogo; `background` aceita uma arte horizontal para o fundo quando o item estiver selecionado. `description` e `colors` são opcionais. Categorias como `Jogos`, `Aplicativos` e `Emuladores` aparecem no filtro.
 
 ## Regras para catálogo e downloads
 

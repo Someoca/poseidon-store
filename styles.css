@@ -82,6 +82,7 @@ button:focus-visible, a:focus-visible, input:focus-visible { outline: 3px solid 
 .cover-card.is-selected { z-index: 3; flex-basis: clamp(146px,18vw,224px); transform: translateY(-6px) scale(1.04); border: 2px solid #c2f6ff; opacity: 1; box-shadow: 0 0 0 2px #47d8ff45,0 0 32px #24c9ff66,0 24px 38px #000b; }
 .cover-logo { position: absolute; z-index: 1; top: 10px; left: 8px; padding: 3px 5px; border: 1px solid rgba(236,251,255,.78); background: rgba(3,13,33,.68); color: #fff; font: 700 9px var(--font-display); letter-spacing: .13em; }
 .cover-art { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; overflow: hidden; }
+.cover-image { position: absolute; z-index: 1; inset: 0; width: 100%; height: 100%; object-fit: cover; }
 .cover-figure { width: 57%; height: 62%; margin-top: 7%; border: 1px solid rgba(185,247,255,.6); border-radius: 48% 48% 23% 23%; background: url("assets/poseidon-guardian.svg") center 8%/auto 190% no-repeat,linear-gradient(125deg,transparent 15%,rgba(7,24,55,.15) 16% 30%,rgba(7,36,68,.88) 31% 70%,transparent 71%); box-shadow: 0 0 18px #2dd2ff55; transform: rotate(-7deg); }
 .cover-title { position: absolute; z-index: 2; right: 5px; bottom: 10px; left: 5px; padding: 8px 4px 5px; background: linear-gradient(transparent,rgba(0,5,18,.93) 24%); color: #fff; font: 700 15px/1 var(--font-display); text-align: center; text-transform: uppercase; text-shadow: 0 2px 5px #000; }
 .cover-card:not(.is-selected) .cover-title { font-size: 10px; }
@@ -113,7 +114,8 @@ button:focus-visible, a:focus-visible, input:focus-visible { outline: 3px solid 
 .details-dialog::backdrop { background: rgba(0,5,17,.78); backdrop-filter: blur(7px); }
 .details-dialog[open] { display: grid; grid-template-columns: .72fr 1fr; }
 .dialog-close { position: absolute; z-index: 2; top: 12px; right: 14px; display: grid; place-items: center; width: 34px; height: 34px; border: 1px solid #9eeaff; border-radius: 50%; background: #061a35; color: white; font-size: 23px; cursor: pointer; }
-.dialog-art { min-height: 355px; background: url("assets/poseidon-guardian.svg") center 12%/auto 112% no-repeat,linear-gradient(150deg,var(--dialog-a),var(--dialog-b) 60%,#061229); }
+.dialog-art { position: relative; min-height: 355px; overflow: hidden; background: url("assets/poseidon-guardian.svg") center 12%/auto 112% no-repeat,linear-gradient(150deg,var(--dialog-a),var(--dialog-b) 60%,#061229); }
+.dialog-cover-image { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
 .dialog-content { align-self: center; padding: 42px; }
 .dialog-content h2 { margin: 8px 0 10px; font: 700 39px/.95 var(--font-display); text-transform: uppercase; }
 .dialog-content p { color: #ccdfef; font-size: 13px; line-height: 1.7; }
