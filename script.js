@@ -71,6 +71,14 @@ document.addEventListener("DOMContentLoaded", async () => {
     return "";
   }
 
+  function safeExternalUrl(value) {
+    if (typeof value !== "string") return "";
+    try {
+      const url = new URL(value);
+      return url.protocol === "https:" && !url.username && !url.password ? url.href : "";
+    } catch { return ""; }
+  }
+
   function makePlatformCard(platform, index) {
     const button = document.createElement("button");
     button.type = "button";
@@ -190,7 +198,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     button.setAttribute("aria-current", String(index === activeIndex));
     const logo = document.createElement("span");
     logo.className = "cover-logo";
-    logo.textContent = `PRÉVIA · ${selectedPlatform.id.toUpperCase()}`;
+    logo.textContent = `${item.preview ? "PRÉVIA" : "HOME BREW"} · ${selectedPlatform.id.toUpperCase()}`;
     const art = document.createElement("span");
     art.className = "cover-art";
     art.setAttribute("aria-hidden", "true");
@@ -247,6 +255,16 @@ document.addEventListener("DOMContentLoaded", async () => {
     document.querySelector("#dialog-description").textContent = item.description;
     document.querySelector("#dialog-category").textContent = item.category;
     document.querySelector("#dialog-platform").textContent = selectedPlatform.name;
+    document.querySelector("#dialog-availability").textContent = item.releaseUrl ? "Download no projeto oficial" : "Prévia visual";
+    document.querySelector("#dialog-notice").hidden = !item.preview;
+    const downloadLink = document.querySelector("#dialog-download");
+    const downloadUrl = safeExternalUrl(item.releaseUrl);
+    downloadLink.hidden = !downloadUrl;
+    if (downloadUrl) downloadLink.href = downloadUrl;
+    const sourceLink = document.querySelector("#dialog-source");
+    const sourceUrl = safeExternalUrl(item.sourceUrl);
+    sourceLink.hidden = !sourceUrl;
+    if (sourceUrl) sourceLink.href = sourceUrl;
     const art = document.querySelector("#dialog-art");
     art.style.setProperty("--dialog-a", item.colors[0]);
     art.style.setProperty("--dialog-b", item.colors[1]);
