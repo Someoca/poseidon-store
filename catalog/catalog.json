@@ -1,0 +1,77 @@
+{
+  "schemaVersion": 1,
+  "items": [
+    {
+      "id": "demo-tidal-ruins",
+      "name": "Ruínas da Maré",
+      "category": "Aventura",
+      "description": "Explore uma cidade submersa e descubra o que restou de um antigo reino oceânico.",
+      "platforms": ["ps4", "ps5"],
+      "colors": ["#188cb4", "#142856"],
+      "preview": true
+    },
+    {
+      "id": "demo-blue-horizon",
+      "name": "Horizonte Azul",
+      "category": "Ação",
+      "description": "Uma prévia visual original criada para demonstrar as capas e a navegação da Poseidon Store.",
+      "platforms": ["ps4", "ps3"],
+      "colors": ["#2874d2", "#16214d"],
+      "preview": true
+    },
+    {
+      "id": "demo-abyss-runner",
+      "name": "Corredor do Abismo",
+      "category": "Corrida",
+      "description": "Atravesse pistas costeiras em uma experiência de velocidade apresentada como conteúdo de demonstração.",
+      "platforms": ["ps4", "ps2"],
+      "colors": ["#d14f38", "#491b44"],
+      "preview": true
+    },
+    {
+      "id": "demo-kingdom-of-tides",
+      "name": "Reino das Marés",
+      "category": "RPG",
+      "description": "Uma jornada fantástica de heróis, criaturas marítimas e cidades escondidas.",
+      "platforms": ["ps4", "psone"],
+      "colors": ["#8265d7", "#242654"],
+      "preview": true
+    },
+    {
+      "id": "demo-island-watch",
+      "name": "Vigia da Ilha",
+      "category": "Aventura",
+      "description": "Observe a costa, siga os sinais e mantenha a ilha protegida durante a noite.",
+      "platforms": ["ps4", "ps3", "psone"],
+      "colors": ["#3d9c75", "#15334a"],
+      "preview": true
+    },
+    {
+      "id": "demo-ocean-pulse",
+      "name": "Pulso Oceânico",
+      "category": "Ação",
+      "description": "Arte de capa abstrata com identidade marinha original, criada para pré-visualizar o carrossel.",
+      "platforms": ["ps4", "ps5", "ps3"],
+      "colors": ["#17aabd", "#192557"],
+      "preview": true
+    },
+    {
+      "id": "demo-poseidon-homebrew",
+      "name": "Central Homebrew",
+      "category": "Aplicativos",
+      "description": "Cartão demonstrativo para aplicativos comunitários. Nenhum pacote está associado a este item.",
+      "platforms": ["homebrew"],
+      "colors": ["#d65045", "#61223c"],
+      "preview": true
+    },
+    {
+      "id": "demo-ocean-tools",
+      "name": "Ferramentas do Mar",
+      "category": "Aplicativos",
+      "description": "Cartão visual de exemplo para uma futura biblioteca de utilitários com origem confirmada.",
+      "platforms": ["homebrew", "ps4"],
+      "colors": ["#2592a6", "#12284d"],
+      "preview": true
+    }
+  ]
+}
