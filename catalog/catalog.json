@@ -6,7 +6,7 @@
       "name": "Ruínas da Maré",
       "category": "Aventura",
       "description": "Explore uma cidade submersa e descubra o que restou de um antigo reino oceânico.",
-      "platforms": ["ps4", "ps5"],
+      "platforms": ["ps4"],
       "colors": ["#188cb4", "#142856"],
       "preview": true
     },
@@ -51,7 +51,7 @@
       "name": "Pulso Oceânico",
       "category": "Ação",
       "description": "Arte de capa abstrata com identidade marinha original, criada para pré-visualizar o carrossel.",
-      "platforms": ["ps4", "ps5", "ps3"],
+      "platforms": ["ps4", "ps3"],
       "colors": ["#17aabd", "#192557"],
       "preview": true
     },

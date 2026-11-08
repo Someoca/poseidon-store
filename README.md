@@ -8,12 +8,14 @@ A Poseidon Store será desenvolvida como um projeto independente, usando a Infin
 
 ## Interface demonstrativa
 
-- Tela de escolha entre Homebrew, PS One, PS2, PS3, PS4 e PS5.
+- Tela de escolha entre Homebrew, PS3, PS One, PS2 e PS4, conforme as plataformas visíveis na Sandro Store de referência.
 - Carrossel de capas com item selecionado em destaque, arte de fundo temática e contador.
 - Detalhes do item, busca, filtro por categoria e teclas indicativas na tela.
 - Navegação com teclado e controle compatível com Gamepad API: direcional/analógico, X, círculo, quadrado, triângulo, L1 e R1.
 - Arte do guardião Poseidon em `assets/poseidon-guardian.svg`.
 - Os itens atuais em `catalog/catalog.json` são fictícios e servem somente como prévia de interface; não há arquivos nem links de download associados.
+- A interface conserva a estrutura de biblioteca por plataforma, carrossel, detalhes e navegação por controle. A marca e a arte do personagem foram substituídas pela identidade original Poseidon.
+- O arquivo Sandro Store enviado é um pacote instalável de PS4, não o projeto-fonte. Ele não disponibiliza um manifesto legível com a lista completa de itens e capas para migração direta.
 
 ## Regras para catálogo e downloads
 
@@ -29,7 +31,7 @@ A Poseidon Store será desenvolvida como um projeto independente, usando a Infin
 - Branch de desenvolvimento: `development`.
 - Interface web em HTML, CSS e JavaScript sem dependências de build.
 - Catálogo carregado de `catalog/catalog.json`.
-- Os cartões de demonstração devem ser substituídos por registros com licença, procedência e distribuição autorizada verificadas antes de qualquer publicação.
+- Os cartões de demonstração devem ser substituídos por registros com licença, procedência e distribuição autorizada verificadas antes de qualquer publicação. Para importar o catálogo Sandro integral, é necessário um manifesto/exportação legível ou os arquivos-fonte e de mídia correspondentes.
 - Ainda não há estrutura de aplicação PS4, pipeline de PKG, testes automatizados ou releases publicados.
 
 ## Fluxo de trabalho

@@ -4,7 +4,6 @@ const platforms = [
   { id: "psone", name: "PS ONE", glyph: "PS" },
   { id: "ps2", name: "PLAYSTATION 2", glyph: "PS2" },
   { id: "ps4", name: "PLAYSTATION 4", glyph: "PS4" },
-  { id: "ps5", name: "PLAYSTATION 5", glyph: "PS5" },
 ];
 
 document.addEventListener("DOMContentLoaded", async () => {
